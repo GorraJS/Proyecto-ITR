@@ -13,7 +13,7 @@ ul {
   }
   
   a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.4);
   }
@@ -33,11 +33,8 @@ ul {
   
   /* below is just for demo styling */
   
-  div {
+  footer {
     display: flex;
-    height: 100vh;
-    width: 100%;
-    background-color: #002a38;
     line-height: 1.3;
     font-family: Menlo, monospace;
   }
