@@ -188,13 +188,13 @@ function Portada() {
 	  
 
 	const [movies, setMovies] = useState([]);
-
+	let mov=Math.floor(Math.random(iconicMovies))
 	useEffect(() => {
 		const fetchData = async () => {
 			const options = {
 				method: "GET",
 				url: "https://online-movie-database.p.rapidapi.com/auto-complete",
-				params: { q: "dream quest" },
+				params: { q: mov },
 				headers: {
 					"x-rapidapi-key":
 						"cb71281a97msh036212d3e3bc848p18e3e2jsn541ec39839d0",
@@ -210,10 +210,11 @@ function Portada() {
 			}
 		};
 		fetchData();
-	}, []);
+		}, []);
 	return (
 		<>
 			<h1>Pelicula:</h1>
+			
 			<main>
 				{movies.map((movie) => (
 					<div key={movie.id}>
