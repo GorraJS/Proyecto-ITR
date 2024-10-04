@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import './App.css'
 import axios from 'axios';
@@ -18,14 +19,22 @@ try {
 } catch (error) {
 	console.error(error);
 }
+=======
+import "./App.css";
+import Footer from "./components/Footer";
+import Portada from "./components/Portada";
+import Navbar from "./components/Navbar";
+
+>>>>>>> REACT
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-    </>
-  )
+	return (
+		<>
+			<Navbar />
+			<Portada />
+			<Footer />
+		</>
+	);
 }
 
-export default App
+export default App;
