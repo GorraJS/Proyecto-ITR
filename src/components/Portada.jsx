@@ -196,33 +196,6 @@ function Portada() {
 		setRandomMovie(iconicMovies[posicion])
 	}
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const options = {
-				method: "GET",
-				url: "https://online-movie-database.p.rapidapi.com/auto-complete",
-				params: { q: randomMovie },
-				headers: {
-					"x-rapidapi-key":
-						"cb71281a97msh036212d3e3bc848p18e3e2jsn541ec39839d0",
-					"x-rapidapi-host": "online-movie-database.p.rapidapi.com",
-				},
-			};
-			try {
-				const response = await axios.request(options);
-				console.log(response.data);
-				setMovies(response.data.d);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-		fetchData();
-	}, []);
-
-	axios.get('https://api.themoviedb.org/3/movie/{movie_id}/images')
-	.then(res => res.data)
-
-
 	return (
 		<>
 			<h1>Pelicula:</h1>
