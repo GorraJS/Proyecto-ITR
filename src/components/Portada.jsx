@@ -185,16 +185,23 @@ function Portada() {
 		"Hacksaw Ridge (2016)",
 		"Dunkirk (2017)",
 		"Once Upon a Time in Hollywood (2019)"];
-	  
+	
 
 	const [movies, setMovies] = useState([]);
+	const [randomMovie, setRandomMovie] = useState("");
+
+
+	const RandomMovie = () => {
+		let posicion = Math.floor(Math.random(iconicMovies.length))
+		setRandomMovie(iconicMovies[posicion])
+	}
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const options = {
 				method: "GET",
 				url: "https://online-movie-database.p.rapidapi.com/auto-complete",
-				params: { q: "dream quest" },
+				params: { q: randomMovie },
 				headers: {
 					"x-rapidapi-key":
 						"cb71281a97msh036212d3e3bc848p18e3e2jsn541ec39839d0",
@@ -211,6 +218,11 @@ function Portada() {
 		};
 		fetchData();
 	}, []);
+
+	axios.get('https://api.themoviedb.org/3/movie/{movie_id}/images')
+	.then(res => res.data)
+
+
 	return (
 		<>
 			<h1>Pelicula:</h1>
@@ -230,6 +242,7 @@ function Portada() {
 					</div>
 				))}
 			</main>
+			<button onClick={RandomMovie}>Generar Pelicula</button>
 		</>
 	);
 }
