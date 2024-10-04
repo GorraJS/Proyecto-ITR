@@ -189,7 +189,7 @@ function Portada() {
 
 	const [movies, setMovies] = useState([]);
 	const [randomMovie, setRandomMovie] = useState("");
-
+	
 
 	const RandomMovie = () => {
 		let posicion = Math.floor(Math.random(iconicMovies.length))
@@ -225,6 +225,7 @@ function Portada() {
 
 	return (
 		<>
+		
 			<h1>Pelicula:</h1>
 			<main>
 				{movies.map((movie) => (
