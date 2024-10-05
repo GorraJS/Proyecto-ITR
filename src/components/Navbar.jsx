@@ -13,7 +13,6 @@ function Navbar() {
                                 <input type="checkbox" />Acción
                             </li>
                             <li>
-                                
                                 <input type="checkbox" />Comedia
                             </li>
                             <li>
