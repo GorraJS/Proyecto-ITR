@@ -185,20 +185,48 @@ function Portada() {
 		"Hacksaw Ridge (2016)",
 		"Dunkirk (2017)",
 		"Once Upon a Time in Hollywood (2019)"];
-	
+
 
 	const [movies, setMovies] = useState([]);
 	const [randomMovie, setRandomMovie] = useState("");
-
+	
 
 	const RandomMovie = () => {
 		let posicion = Math.floor(Math.random(iconicMovies.length))
 		setRandomMovie(iconicMovies[posicion])
 	}
 
+	
+	useEffect(() => {
+		const fetchData = async () => {
+			const options = {
+				method: 'GET',
+				url: 'https://online-movie-database.p.rapidapi.com/auto-complete',
+				params: { q: 'dr' },
+				headers: {
+					'x-rapidapi-key': 'b862bfc460msh1c42caa05af5803p16bad7jsnbcd106b306ef',
+					'x-rapidapi-host': 'online-movie-database.p.rapidapi.com'
+				}
+			};
+
+			try {
+				const response = await axios.request(options);
+				console.log(response.data);
+				setMovies(response.data.d)
+				console.log(randomMovie)
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		fetchData();
+	}, []);
+
+	
 	return (
 		<>
+		
 			<h1>Pelicula:</h1>
+
 			<main>
 				{movies.map((movie) => (
 					<div key={movie.id}>
