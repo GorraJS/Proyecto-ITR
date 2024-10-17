@@ -6,6 +6,7 @@ import Signup from "./Signup";
 function Inicio() {
     const [SignupIsOpen,SetSignupIsOpen]=useState(false);
     const [LoginIsOpen,SetLoginIsOpen]=useState(false);
+    const [IdAcount,SetIdAcount]=useState("")
         return (
             <>
             {SignupIsOpen &&  <div className='background' onClick={()=>SetSignupIsOpen(false)}>
@@ -15,9 +16,9 @@ function Inicio() {
           .
           </div>}
 {SignupIsOpen && <Signup></Signup>}
-{LoginIsOpen && <Login></Login>}
+{LoginIsOpen && <Login send={SetIdAcount}></Login>}
 
-<button onClick={()=>SetSignupIsOpen(true)}>Signup</button>
+<button onClick={()=>{SetSignupIsOpen(true),console.log(IdAcount)}}>Signup</button>
 <button onClick={()=>SetLoginIsOpen(true)}>Login</button>
             </>
         );

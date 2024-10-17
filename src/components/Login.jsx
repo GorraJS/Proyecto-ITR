@@ -3,7 +3,9 @@ import '../index.css'
 import {getAuth,signInWithEmailAndPassword} from 'firebase/auth'
 import { app } from './db';
 const auth=getAuth(app)
-function Login() {
+
+function Login(props) {
+
     const [Acount,SetAcount]=useState({
       Name:"",
       LastName:"",
@@ -11,14 +13,21 @@ function Login() {
       Gmail:"",
       Password:""
     })
-    const Submit= async(event)=>{
+    const Submit= (event)=>{
        event.preventDefault()
-        await signInWithEmailAndPassword(auth,Acount.Gmail,Acount.Password)
+       signInWithEmailAndPassword(auth,Acount.Gmail,Acount.Password)
+       .then((userCredential) => { 
+        props.send(userCredential["user"].uid)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+
     }
     const Handle=(event)=>{
       let name = event.target.name
       let value = event.target.value
-      console.log(name,value)
         SetAcount({
             ...Acount,[name]:value
         })
@@ -30,19 +39,19 @@ function Login() {
           <div>
             <form onSubmit={Submit}>
             <h3>Gmail</h3>
-            <input 
+            <input className={"SignupInputs"}  
             onChange={Handle}
             name='Gmail'
             type='email'
             ></input>
               <h3>contraseña</h3>
-            <input 
+            <input className={"SignupInputs"}  
             onChange={Handle}
             name='Password'
             type='password'
             ></input>
             <br></br>
-            <button type='Submit'>Submit</button>
+            <button className="SignupButton" type='Submit'>Submit</button>
             <br></br>
             <br></br>
             </form>
