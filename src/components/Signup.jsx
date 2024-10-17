@@ -1,6 +1,6 @@
 import { useState,React } from 'react';
 import '../index.css'
-import {getAuth,createUserWithEmailAndPassword,} from 'firebase/auth'
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
 import {getFirestore,doc, setDoc  } from 'firebase/firestore'
 import { app } from './db';
 const auth=getAuth(app)
@@ -15,15 +15,20 @@ function Signup() {
       Gmail:"",
       Password:""
     })
+    const AddDataUser = async(id) => {
+      await setDoc(doc(db, "Users", id), {
+        name: Acount.Name,
+        LastName: Acount.LastName,
+        Age: Acount.Age
+      });
+    }; 
     const Submit= async(event)=>{
        event.preventDefault()
-        await createUserWithEmailAndPassword(auth,Acount.Gmail,Acount.Password)
-
-
-      await setDoc(doc(db, "User", "LA"), {
-
-      });
-      
+        await createUserWithEmailAndPassword(auth,Acount.Gmail,Acount.Password) 
+        await signInWithEmailAndPassword(auth,Acount.Gmail,Acount.Password)
+        .then((userCredential) => { 
+          AddDataUser(userCredential["user"].uid)
+       })
     }
     const Handle=(event)=>{
       let name = event.target.name
@@ -44,6 +49,7 @@ function Signup() {
             onChange={Handle}
             name='Name'
             type='text'
+            required 
             ></input>
             
             <h3>Apellido</h3>
@@ -51,6 +57,7 @@ function Signup() {
             onChange={Handle}
             name='LastName'
             type='text'
+            required 
             ></input>
             
             <h3>Edad</h3>
@@ -58,6 +65,7 @@ function Signup() {
             onChange={Handle}
             name='Age'
             type='number'
+            required 
             ></input>
             
             <h3>Gmail</h3>
@@ -65,12 +73,14 @@ function Signup() {
             onChange={Handle}
             name='Gmail'
             type='email'
+            required 
             ></input>
               <h3>contraseña</h3>
             <input className={"SignupInputs"} 
             onChange={Handle}
             name='Password'
             type='password'
+            required 
             ></input>
             <br></br>
             <button className="SignupButton" type='Submit'>Submit</button>
