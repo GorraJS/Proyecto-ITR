@@ -40,26 +40,3 @@
 .read-the-docs {
   color: #888;
 }
-
-/*esto es importante NO LO BORREN pueden modificarlo o moverlo de css pero NO LO BORREN PORFAVOR... atte Equipo de la Navbar*/
-.dropdown {
-  position: relative;
-}
-
-.dropdown-toggle {
-  cursor: pointer;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #5f5f5f;
-  border: 1px solid #ccc;
-  padding: 10px;
-  display: none;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
