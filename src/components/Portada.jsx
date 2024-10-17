@@ -636,6 +636,7 @@ function Portada() {
 		setRandomMovie(selectedMovie);
 	};
 
+	
 	useEffect(() => {
 		if (randomMovie) {
 			axios
@@ -643,8 +644,15 @@ function Portada() {
 				.then(res => setMovie(res.data))
 				.catch(err => console.error("Error fetching movie", err));
 		}
+<<<<<<< HEAD
 	}, [randomMovie]); 
 
+=======
+		fetchData();
+	}, []);
+
+	
+>>>>>>> b0cd093d354dfbd73fe5b67f59a279a6fcb47f76
 	return (
 		<>
 			<h1>Movie Randomizer</h1>
