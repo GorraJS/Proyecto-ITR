@@ -627,7 +627,7 @@ function Portada() {
 		"Top Gun: Maverick",
 		"The Fabelmans",
 		"The Banshees of Inisherin",
-		"Avatar: The Way of Water"
+		"Avatar: The Way of Water",
 	];
 
 	const RandomMovie = () => {
@@ -636,23 +636,17 @@ function Portada() {
 		setRandomMovie(selectedMovie);
 	};
 
-	
 	useEffect(() => {
 		if (randomMovie) {
 			axios
-				.get(`https://www.omdbapi.com/?t=${randomMovie}&apikey=e5b17a6c`)
-				.then(res => setMovie(res.data))
-				.catch(err => console.error("Error fetching movie", err));
+				.get(
+					`https://www.omdbapi.com/?t=${randomMovie}&apikey=e5b17a6c`
+				)
+				.then((res) => setMovie(res.data))
+				.catch((err) => console.error("Error fetching movie", err));
 		}
-<<<<<<< HEAD
-	}, [randomMovie]); 
+	}, [randomMovie]);
 
-=======
-		fetchData();
-	}, []);
-
-	
->>>>>>> b0cd093d354dfbd73fe5b67f59a279a6fcb47f76
 	return (
 		<>
 			<h1>Movie Randomizer</h1>
@@ -666,7 +660,6 @@ function Portada() {
 								alt={movie.Title}
 								width="200px"
 							/>
-							
 						) : (
 							<p>No hay imagen disponible</p>
 						)}
@@ -677,7 +670,7 @@ function Portada() {
 				)}
 			</main>
 			<button onClick={RandomMovie}>❤️</button>
-			<button >Watch now🎬</button>
+			<button>Watch now🎬</button>
 			<button onClick={RandomMovie}>❌</button>
 		</>
 	);
