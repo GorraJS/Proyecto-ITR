@@ -82,6 +82,12 @@ function Signup() {
             type='password'
             required 
             ></input>
+             <h3>Confirmar contraseña</h3>
+            <input className={"SignupInputs"} 
+            name='Password'
+            type='password'
+            required 
+            ></input>
             <br></br>
             <button className="SignupButton" type='Submit'>Submit</button>
             <br></br>
