@@ -24,7 +24,8 @@ function Signup() {
     Password: "",
     CPassword: ""
   })
-  const DatasNames=["Name","LastName","Age","Gmail","Password","CPassword"]
+  const DatasNames = ["Name", "LastName", "Age", "Gmail", "Password", "CPassword"]
+
   const AddDataUser = async (id) => {
     await setDoc(doc(db, "Users", id), {
       name: Acount.Name,
@@ -34,30 +35,30 @@ function Signup() {
   };
   const Submit = async (event) => {
     event.preventDefault()
-      for(let i=0;i<7;i++){
-        const dataName=DatasNames[i]
-        SetError({...error,[dataName]:""})
+
+    for (let i = 0; i < 6; i++) {
+      const dataName = DatasNames[i]
+      console.log(dataName)
+
+      if (Acount[dataName] == "") {
+        SetError({ ...error, [dataName]: "Complete este valor" })
+        return
       }
-      for(let i=0;i<7;i++){
-        const dataName=DatasNames[i]
-        console.log(dataName)
-        if(Acount.dataName=""){
-          
-          SetError({...error,[dataName]:"Complete este valor"})
+      else {
+        SetError({ ...error, [dataName]: "" })
+      }
+    }
+    await createUserWithEmailAndPassword(auth, Acount.Gmail, Acount.Password)
+      .catch((error) => {
+        const errorMessage = error.message;
+        if (errorMessage == "Firebase: Error (auth/email-already-in-use).") {
+          SetError({ ...Error, Gmail: "La cuenta ya esta en uso" })
         }
-      }
-        await createUserWithEmailAndPassword(auth, Acount.Gmail, Acount.Password)
-        .catch((error) => {
-          const errorMessage = error.message;
-          console.log(errorMessage)
-          if (errorMessage == "Firebase: Error (auth/email-already-in-use).") {
-            SetError({ ...Error, Gmail: "La cuenta ya esta en uso" })
-          } 
-        });
-      await signInWithEmailAndPassword(auth, Acount.Gmail, Acount.Password)
-        .then((userCredential) => {
-          AddDataUser(userCredential["user"].uid)
-        })
+      });
+    await signInWithEmailAndPassword(auth, Acount.Gmail, Acount.Password)
+      .then((userCredential) => {
+        AddDataUser(userCredential["user"].uid)
+      })
 
   }
   const Handle = (event) => {
