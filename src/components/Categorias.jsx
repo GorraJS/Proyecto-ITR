@@ -24,9 +24,13 @@ const Categorias = () =>{
         "Thriller ",
         "War ",
         "Western "]
+        const randomCAt =()=> {
+                const rand = Math.floor(Math.random() * arr.length)
+            return{}
+        }
     return(<>
         <h1>Categorias</h1>
-        <button></button>
+        <button onClick={randomCAt}></button>
         <select>
             {arr.map((cat) => (
                 <option>{cat}</option>
